@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sprdsht</title>
+  <meta charset="utf-8">
+    <title>Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+	  <%= stylesheet_link_tag    "bootstrap-responsive", :media => "all" %>
+	  <%= stylesheet_link_tag    "companies", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="body-container">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/" id="siteTitle" style="color: #fff !important;">Sprdsht</a>
+				<ul class="nav">
+					<li><%= link_to "Home", :root %></li>
+					<li><%= link_to "Schedule", companies_weekly_schedule_path %></li>
+					<!-- <li><%= link_to "My Profile", "#" %></li> -->
+				</ul>
+			</div>
+		</div><!-- /navbar-inner -->
+	</div>
+
+
+<%= yield %>
+
+</div> <!-- END: body-container -->
+</body>
+</html>

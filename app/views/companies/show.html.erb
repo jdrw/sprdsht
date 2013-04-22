@@ -1,0 +1,141 @@
+<head>
+	<style>
+	@media all and (max-width: 520px) and (min-width: 100px) {
+		.time_mobile {
+			border-top: 3px solid #000 !important;
+			outline: 1px solid #fff !important;
+			background-color: #E6E6E6;
+		}
+
+		table.schedule td {
+			text-align: left !important;
+		}
+
+		table.schedule tr td {
+			// height: 50px !important;
+			padding: 0 0 0 5px!important;
+		}
+
+		tr.info_mobile td {
+			height: 50px;
+		}
+
+		.scheduled {
+			background: grey;
+			color: #fff;
+		}
+	}
+	</style>
+</head>
+
+<p id="notice"><%= notice %></p>
+
+<div class="row-fluid" align="center">
+	<h5>Here's What's Happening Today</h5>
+	<h2 style="line-height: 20px; text-transform: uppercase;"><%= Time.now.strftime("%A, %B %d") %></h2>
+</div>
+
+<p></p>
+<div class="row-fluid">
+	<div class="black-bar">
+		<i class="icon-time icon-white"></i> Schedule
+	</div>
+</div>
+
+<p></p>
+<div class="row-fluid" id="mobile_table">
+	<table class="table schedule">
+
+		<tr>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+		</tr>
+
+		<% @schedule.each do |person| %>
+
+			<tr class="time_mobile">
+				<%= time_table_mobile(person[:start_time],person[:end_time]) %>
+			</tr>
+			<tr class="info_mobile">
+				<td colspan=7><i class="icon-user"></i> <%= link_to person[:name], companies_employee_profile_path(:employee_id => person[:id]) %></td>
+				<td colspan=8><i class="icon-time"></i> <%= person[:end_time] - person[:start_time] %> hrs</td>
+			</tr>
+
+		<% end %>
+	</table>
+</div>
+
+<div class="row-fluid" id="desktop_table">
+	<table class="table table-hover schedule">
+		<tr>
+			<th></th>
+			<th>7</th>
+			<th>8</th>
+			<th>9</th>
+			<th>10</th>
+			<th>11</th>
+			<th>12</th>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+			<th>5</th>
+			<th>6</th>
+			<th>7</th>
+			<th>8</th>
+			<th>9</th>
+			<th>HRS</th>
+			<th>Notes / Comments</th>
+		</tr>
+		<% @schedule.each do |person| %>
+		<tr>
+			<th><%= link_to person[:name], companies_employee_profile_path(:employee_id => person[:id]) %></th>
+			<%= time_table(person[:start_time],person[:end_time]) %>
+			<td><%= person[:end_time] - person[:start_time] %></td>
+			<td><%= person[:note] %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<p></p>
+
+<div class="row-fluid">
+	<div class="span4">
+
+		<div class="row-fluid">
+			<div class="black-bar">
+				<i class="icon-check icon-white"></i> Events
+			</div>
+		</div>
+
+		<p></p>
+		<div class="row-fluid">
+			<div class="well well-small span12">
+				<% @events.each do |event| %>
+				• <%= event %><br/>
+				<% end %>
+			</div>
+		</div>		
+
+	</div>
+
+	<div class="span8">
+		<%= render 'comments', :employee_id => 1 %>
+
+	</div>
+</div>
+

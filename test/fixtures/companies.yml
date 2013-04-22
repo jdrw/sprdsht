@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: companies
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  gmail      :string(255)
+#  gpassword  :string(255)
+#  drive_id   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  gmail: MyString
+  gpassword: MyString
+  drive_id: MyString
+
+two:
+  name: MyString
+  gmail: MyString
+  gpassword: MyString
+  drive_id: MyString

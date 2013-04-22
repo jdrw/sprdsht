@@ -1,0 +1,144 @@
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	font-size: 13px;
+}
+
+.body-container {
+	max-width: 960px;
+	margin: 15px auto;
+}
+
+.black-bar {
+	max-width: 100%;
+	height: 14px;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 13px;
+	line-height: 14px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-align: center;
+
+
+	background-color: #0088cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #4e7ffb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), #4e7ffb);
+  background-image: -webkit-linear-gradient(top, #0088cc, #4e7ffb);
+  background-image: -o-linear-gradient(top, #0088cc, #4e7ffb);
+  background-image: linear-gradient(to bottom, #0088cc, #4e7ffb);
+  background-repeat: repeat-x;
+  border-color: #4e7ffb;
+}
+
+.comment {
+
+	max-width: 100%;
+	
+	.user {
+		font-size: 13px;
+		text-transform: uppercase;
+		word-spacing: 2px;
+		color: lighten(#000, 10%);
+		font-weight: bold;
+	}
+
+	.date {
+		font-size: 12px;
+		color: lighten(#000, 40%);
+	}
+
+	.body {
+		color: lighten(#000, 20%);
+		text-align: justify;
+	}
+}
+
+.time {
+	font-size: 12px;
+	width: 20px;
+	padding: 1px !important;
+}
+
+.reply {
+	font-size: 12px;
+	color: lighten(#000, 40%);
+	text-decoration: underline;
+	text-align: right;
+}
+
+.scheduled {
+	background: url('scheduled_slot.png') repeat-x;
+}
+
+table.schedule th {
+	text-align: center;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+}
+
+table.schedule td {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-align: center;
+}
+
+@media all and (min-width: 520px) {
+	#desktop_table {
+		// display: none;
+	}
+  #mobile_table {
+  	display: none;
+  }
+}
+
+@media all and (max-width: 520px) and (min-width: 100px) {
+
+	#siteTitle {
+		// display: inline-block;
+		float: left;
+		padding: 10px 3px 5px 3px !important;
+		margin: 0;
+		text-transform: uppercase;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	ul.nav li a {
+		padding: 0px 5px 10px 3px !important;
+		margin: 0;
+		letter-spacing: 0px;
+		word-spacing: -1px;
+		font-size: 12px !important;
+		text-transform: uppercase;
+		text-decoration: underline !important;
+	}
+
+	h2 {
+		font-size: 22px !important;
+	}
+
+	#comment_username {
+		margin-bottom: 10px;
+	}
+
+	.avatar {
+		display: none;
+	}
+
+	.comment {
+		line-height: 17px;
+	}
+
+	.replied {
+		background-color: darken(#fff, 10%);
+		border-radius: 3px;
+	}
+
+	#desktop_table {
+		display: none;
+	}
+  #mobile_table {
+  	// display: none;
+  }
+}

@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: spreadsheet_comments
+#
+#  id           :integer          not null, primary key
+#  employee_id  :integer
+#  username     :string(255)
+#  content      :text
+#  commented_on :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_id: 1
+  username: MyString
+  content: MyText
+  commented_on: 1
+
+two:
+  employee_id: 1
+  username: MyString
+  content: MyText
+  commented_on: 1

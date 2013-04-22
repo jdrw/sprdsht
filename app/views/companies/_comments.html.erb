@@ -1,0 +1,140 @@
+<div class="row-fluid">
+		<div class="black-bar">
+			<i class="icon-comment icon-white"></i> Messages
+		</div>
+	</div>
+	
+	<p></p>
+
+	<div class="row-fluid">
+		<%= form_for @new_comment, url: companies_create_comment_path, html: { class: 'form-inline' } do |f| %>
+			<%= f.text_area :content, class: 'span12', placeholder: 'Message to be typed here', size: '20x3' %>
+			<p></p>
+			<%= f.text_field :username, class: 'span6', placeholder: 'Name' %>
+			<%= f.hidden_field :employee_id, value: employee_id %>
+			<%= f.submit 'Submit', class: 'span6 btn pull-right' %>
+		<% end %>
+	</div>
+
+	<% @comments.each do |comment| %>
+		<hr>
+		<div class="row-fluid comment replied">
+			<div class="span1">
+				<%= image_tag 'gravatar.jpg', size: '50x50', class: 'img-circle avatar pull-left' %>
+			</div>
+			<div class="span2">
+				<span class="user"><%= comment.username %></span><br/>
+				<span class="date"><%= comment.created_at.strftime("%b %d, %I:%M%p") %></span>
+			</div>
+			<div class="span9 body">
+				<%= comment.content %>
+				<p></p><a href="#myModal" role="button" data-toggle="modal" class="reply" data-commented="<%= comment.id %>">reply</a>
+
+			</div>
+		</div>
+
+					<% SpreadsheetComment.where(:commented_on => comment.id).each do |commented| %>
+						<p></p>
+						<div class="row-fluid comment">
+							<div class="span2 offset1">
+								<span class="user"><%= commented.username %></span><br/>
+								<span class="date"><%= commented.created_at.strftime("%b %d, %I:%M%p") %></span>
+							</div>
+							<div class="span9 body">
+								<%= commented.content %>
+							</div>
+						</div>
+
+					<% end %>
+
+	<% end %>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Reply to comment</h3>
+		</div>
+		<div class="modal-body">
+			<%= form_for @new_comment, url: companies_create_comment_path, html: { class: 'form-inline' } do |f| %>
+			<%= f.text_area :content, class: 'span12', placeholder: 'Message to be typed here', size: '20x3' %>
+			<p></p>
+			<%= f.text_field :username, class: 'span6', placeholder: 'Name' %>
+			<%= f.hidden_field :employee_id, value: employee_id %>
+			<%= f.hidden_field :commented_on %>
+			<%= f.submit 'Submit', class: 'span6 btn pull-right' %>
+			<% end %>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<!-- <button class="btn btn-primary">Submit</button> -->
+		</div>
+	</div>
+	<!-- end: Modal -->
+
+	<!-- <p></p>
+	<div class="row-fluid comment replied">
+		<div class="span1">
+			<%= image_tag 'gravatar.jpg', size: '50x50', class: 'img-circle avatar pull-left' %>
+		</div>
+		<div class="span2">
+			<span class="user">Minh T.</span><br/>
+			<span class="date"><%= Time.now.strftime("%b %d, %I:%M%p") %></span>
+		</div>
+		<div class="span9 body">
+			The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+			<p></p><a href="#" class="reply">reply</a>
+		</div>
+	</div>
+
+	<hr>
+	<div class="row-fluid comment replied">
+		<div class="span1">
+			<%= image_tag 'gravatar.jpg', size: '50x50', class: 'img-circle avatar pull-left' %>
+		</div>
+		<div class="span2">
+			<span class="user">Adam Blake</span><br/>
+			<span class="date"><%= Time.now.strftime("%b %d, %I:%M%p") %></span>
+		</div>
+		<div class="span9 body">
+			It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+			<p></p><a href="#" class="reply">reply</a>
+		</div>
+	</div>
+
+						<p></p>
+						<div class="row-fluid comment">
+							<div class="span2 offset1">
+								<span class="user">Bobby S.</span><br/>
+								<span class="date"><%= Time.now.strftime("%b %d, %I:%M%p") %></span>
+							</div>
+							<div class="span9 body">
+								Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+							</div>
+						</div>
+
+						<p></p>
+						<div class="row-fluid comment">
+							<div class="span2 offset1">
+								<span class="user">Lola M.</span><br/>
+								<span class="date"><%= Time.now.strftime("%b %d, %I:%M%p") %></span>
+							</div>
+							<div class="span9 body">
+								Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+							</div>
+						</div>
+
+	<hr>
+	<div class="row-fluid comment replied">
+		<div class="span1">
+			<%= image_tag 'gravatar.jpg', size: '50x50', class: 'img-circle avatar pull-left' %>
+		</div>
+		<div class="span2">
+			<span class="user">Max S.</span><br/>
+			<span class="date"><%= Time.now.strftime("%b %d, %I:%M%p") %></span>
+		</div>
+		<div class="span9 body">
+			There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.
+			<p></p><a href="#" class="reply">reply</a>
+		</div>
+	</div> -->
